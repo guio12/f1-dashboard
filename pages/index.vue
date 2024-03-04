@@ -1,11 +1,11 @@
 <script setup lang="ts">
   useHead({
-    title: 'Prochaine course',
+    title: 'Prochain Grand Prix',
   })
 </script>
 
 <template>
   <section class="">
-    <NextRaceOverview />
+    <IncomingGrandPrixOverview />
   </section>
 </template>
