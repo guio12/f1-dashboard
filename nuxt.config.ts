@@ -7,4 +7,7 @@ export default defineNuxtConfig({
     typeCheck: false,
     strict: true,
   },
+  imports: {
+    dirs: ['types'],
+  },
 })
