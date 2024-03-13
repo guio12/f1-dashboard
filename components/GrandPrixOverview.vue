@@ -1,32 +1,44 @@
 <script setup lang="ts">
   defineProps<{
-    id: number
+    season: string
+    round: string
     name: string
-    officialName: string
-    date: string
-    year: number
+    dateStart: string
+    dateEnd: string
+    time: string
+    isSprintGrandPrix: boolean
+    url: string
   }>()
 
-  const formatDate = (date: string) => useDateFormatter(date)
+  const formatDate = (date: string) => dateFormatter(date)
+  const formatTime = (date: string, time: string) =>
+    timeFormatter(`${date}T${time}`)
 </script>
 
 <template>
   <UCard>
     <template #header>
       <div>
-        <p class="h-8">Grand Prix : {{ name }}</p>
-        <p>Nom officiel {{ officialName }}</p>
+        <ULink :to="url" class="link">{{ name }}</ULink>
+        <p class="h-8">Round {{ round }}</p>
+        <UBadge v-if="isSprintGrandPrix" label="Sprint" />
       </div>
     </template>
-    <div class="h-32">Date: {{ formatDate(date) }}</div>
+
+    <div class="h-8">
+      {{ formatDate(dateStart) }} - {{ formatDate(dateEnd) }}
+    </div>
+
+    <div class="h-8">Début de la course à {{ formatTime(dateEnd, time) }}</div>
+
     <template #footer>
       <div class="h-8">
-        <UButton icon="i-heroicons-information-circle-solid" :to="`grand-prix/${id}`"
+        <UButton
+          icon="i-heroicons-information-circle-solid"
+          :to="`/season/${season}/grand-prix/${round}`"
           >Détails du week-end</UButton
         >
       </div>
     </template>
   </UCard>
 </template>
-
-<style scoped></style>
