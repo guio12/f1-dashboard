@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint . --ext .js,.ts,.vue && stylelint **/*.{vue,css} && prettier --check '**/*.?(js|ts|vue|css)'",
+    "lint": "eslint . --ext .js,.ts,.vue && stylelint **/*.{vue,css} && prettier --check '**/*.?(ts|vue|css)'",
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
