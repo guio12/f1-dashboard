@@ -19,6 +19,11 @@
     Date: formatDate(data?.date),
     Heure: formatTime(data?.date, data?.time),
   }))
+
+  const sort = ref({
+    column: ['Date'],
+    direction: 'desc',
+  })
 </script>
 
 <template>
@@ -53,7 +58,7 @@
 
       <template #footer>
         <div class="">
-          <UTable :rows="sessionsItems"></UTable>
+          <UTable :rows="sessionsItems" :sort="sort"></UTable>
         </div>
       </template>
     </UCard>
