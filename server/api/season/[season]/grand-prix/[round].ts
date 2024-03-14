@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
         },
         secondPractice: {
           date: SecondPractice.date,
-          time: SecondPractice.date,
+          time: SecondPractice.time,
         },
         qualifying: {
           date: Qualifying.date,
