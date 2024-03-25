@@ -1,18 +1,18 @@
 <script setup lang="ts">
-  defineProps<{
-    season: string
-    round: string
-    name: string
-    dateStart: string
-    dateEnd: string
-    time: string
-    isSprintGrandPrix: boolean
-    url: string
-  }>()
+defineProps<{
+  season: string
+  round: string
+  name: string
+  dateStart: string
+  dateEnd: string
+  time: string
+  isSprintGrandPrix: boolean
+  url: string
+}>()
 
-  const formatDate = (date: string) => dateFormatter(date)
-  const formatTime = (date: string, time: string) =>
-    timeFormatter(`${date}T${time}`)
+const formatDate = (date: string) => dateFormatter(date)
+const formatTime = (date: string, time: string) =>
+  timeFormatter(`${date}T${time}`)
 </script>
 
 <template>
@@ -36,7 +36,7 @@
         <UButton
           icon="i-heroicons-information-circle-solid"
           :to="`/season/${season}/grand-prix/${round}`"
-          >Détails du week-end</UButton
+          >Détails du Grand Prix</UButton
         >
       </div>
     </template>

@@ -1,16 +1,20 @@
 <script setup lang="ts">
-  useHead({
-    title: 'Prochain Grand Prix',
-  })
+useHead({
+  title: 'Prochain Grand Prix',
+})
 
-  const { data: incomingGrandPrixData } = await useFetch<GrandPrixDetailsData>(
-    '/api/incoming-grand-prix'
-  )
+const { data: incomingGrandPrixData } = await useFetch<GrandPrixDetailsData>(
+  '/api/incoming-grand-prix'
+)
 </script>
 
 <template>
   <article class="">
-    <h1>{{ incomingGrandPrixData?.name }}</h1>
+    <h1>
+      <NuxtLink :to="incomingGrandPrixData?.url">{{
+        incomingGrandPrixData?.name
+      }}</NuxtLink>
+    </h1>
     <h2>
       Saison {{ incomingGrandPrixData?.season }} | Round
       {{ incomingGrandPrixData?.round }}
