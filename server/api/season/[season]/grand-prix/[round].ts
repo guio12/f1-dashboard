@@ -1,5 +1,5 @@
-import { APIGrandPrixData } from '~/types/APIGrandPrixData'
-import { GrandPrixDetailsData } from '~/types/GrandPrixDetailsData'
+import type { APIGrandPrixData } from '~/types/APIGrandPrixData'
+import type { GrandPrixDetailsData } from '~/types/GrandPrixDetailsData'
 import addScheduleEntry from '~/utils/addScheduleEntry'
 
 export default defineEventHandler(async (event) => {

@@ -1,5 +1,5 @@
-import { GrandPrixOverviewData } from '~/types/GrandPrixOverviewData'
-import { APIGrandPrixData } from '~/types/APIGrandPrixData'
+import type { GrandPrixOverviewData } from '~/types/GrandPrixOverviewData'
+import type { APIGrandPrixData } from '~/types/APIGrandPrixData'
 
 export default defineEventHandler(async (event) => {
   const { season } = event.context.params ?? {}
