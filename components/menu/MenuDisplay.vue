@@ -16,16 +16,18 @@ const menuItems = [
     to: '/past-seasons/',
   },
 ]
+
+const isMobileMenuOpen = ref(false)
 </script>
 
 <template>
-  <aside
-    class="sidebar invisible fixed h-full w-auto bg-gray-800 p-7 lg:visible"
-  >
-    <UVerticalNavigation :links="menuItems" />
-  </aside>
-
-  <header class="bg-gray-800 lg:invisible">
-    <UHorizontalNavigation :links="menuItems" />
+  <header class="bg-gray-800 px-10 py-3">
+    <UHorizontalNavigation :links="menuItems" class="hidden lg:block" />
+    <UButton
+      icon="i-heroicons-bars-3-16-solid"
+      class="lg:hidden"
+      @click="isMobileMenuOpen = true"
+    />
+    <MenuMobile v-model="isMobileMenuOpen" :menu-items="menuItems" />
   </header>
 </template>
