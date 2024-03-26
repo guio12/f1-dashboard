@@ -53,39 +53,42 @@ const numberOfGPs = computed(() => {
 </script>
 
 <template>
-  <article class="mt-5 grid grid-cols-2 gap-10">
+  <article class="container mx-auto px-10 pt-7">
     <h1>Saison {{ season }}</h1>
 
-    <UPopover :popper="{ placement: 'bottom-start' }">
-      <UButton icon="i-heroicons-calendar-days-20-solid">
-        {{ format(selectedDates.start, 'd MMM, yyy') }} -
-        {{ format(selectedDates.end, 'd MMM, yyy') }}
-      </UButton>
-
-      <template #panel="{ close }">
-        <div
-          class="flex items-center divide-gray-200 sm:divide-x dark:divide-gray-800"
-        >
-          <div class="hidden flex-col py-4 sm:flex">
-            <UButton
-              label="Saison entière"
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-calendar-days-20-solid"
-              class="rounded-none px-6"
-              truncate
-              @click="selectAllSeasonRange()"
-            />
+    <aside>
+      <UPopover :popper="{ placement: 'bottom-start' }">
+        <UButton icon="i-heroicons-calendar-days-20-solid">
+          {{ format(selectedDates.start, 'd MMM, yyy') }} -
+          {{ format(selectedDates.end, 'd MMM, yyy') }}
+        </UButton>
+        <template #panel="{ close }">
+          <div
+            class="flex items-center divide-gray-200 sm:divide-x dark:divide-gray-800"
+          >
+            <div class="hidden flex-col py-4 sm:flex">
+              <UButton
+                label="Saison entière"
+                color="gray"
+                variant="ghost"
+                icon="i-heroicons-calendar-days-20-solid"
+                class="rounded-none px-6"
+                truncate
+                @click="selectAllSeasonRange()"
+              />
+            </div>
+            <UIDatePicker v-model="selectedDates" @close="close" />
           </div>
-          <UIDatePicker v-model="selectedDates" @close="close" />
-        </div>
-      </template>
-    </UPopover>
+        </template>
+      </UPopover>
+    </aside>
 
     <p>Nombre de Grand Prix durant cette période : {{ numberOfGPs }}</p>
 
-    <section v-for="grandPrix in filteredSeasonData" :key="grandPrix.round">
+    <section class="grid grid-cols-1 gap-10 lg:grid-cols-3">
       <GrandPrixOverview
+        v-for="grandPrix in filteredSeasonData"
+        :key="grandPrix.round"
         :season="grandPrix.season"
         :round="grandPrix.round"
         :name="grandPrix.name"
