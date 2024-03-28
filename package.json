@@ -12,20 +12,20 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.14.1",
-    "date-fns": "^3.4.0",
-    "nuxt": "^3.10.3",
+    "@nuxt/ui": "^2.15.0",
+    "date-fns": "^3.6.0",
     "v-calendar": "^3.1.2",
-    "vue": "^3.4.19",
+    "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "nuxt": "^3.11.1",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "stylelint": "^16.2.1",
+    "prettier-plugin-tailwindcss": "^0.5.13",
+    "stylelint": "^16.3.1",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-recommended-vue": "^1.5.0"
   }
