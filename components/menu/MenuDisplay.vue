@@ -56,7 +56,7 @@ const isDark = computed({
         color="gray"
         variant="ghost"
         aria-label="Theme"
-        class="rounded-none border-gray-200 lg:me-10 lg:border-b dark:border-gray-800"
+        class="h-10 self-center lg:me-10 dark:border-gray-800"
         @click="isDark = !isDark"
       />
       <template #fallback>
