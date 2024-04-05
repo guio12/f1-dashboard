@@ -33,7 +33,7 @@ const sort = ref({
           <p>{{ circuit.locality }} - {{ circuit.country }}</p>
         </div>
         <div>
-          <ULink :to="circuit.url">{{ circuit.name }}</ULink>
+          <ULink :to="circuit.url" target="_blank">{{ circuit.name }}</ULink>
         </div>
         <div>
           <p>
