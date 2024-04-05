@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+.link {
+  @apply text-green-500 dark:text-green-300 hover:text-green-600 hover:dark:text-green-400 hover:underline underline-offset-4;
+}
+
+@tailwind utilities;

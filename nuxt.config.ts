@@ -3,11 +3,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   modules: ['@nuxt/ui'],
+  imports: {
+    dirs: ['types'],
+  },
   typescript: {
     typeCheck: false,
     strict: true,
   },
-  imports: {
-    dirs: ['types'],
-  },
+  css: ['~/assets/css/main.css'],
 })
