@@ -53,6 +53,8 @@ export default defineEventHandler(async (event) => {
         name: Circuit.circuitName,
         locality: Circuit.Location.locality,
         country: Circuit.Location.country,
+        latitude: Circuit.Location.lat,
+        longitude: Circuit.Location.long,
       },
     }
 

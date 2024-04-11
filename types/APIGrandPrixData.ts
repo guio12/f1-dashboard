@@ -14,6 +14,8 @@ export type APIGrandPrixData = {
           Location: {
             locality: string
             country: string
+            lat: string,
+            long: string,
           }
         }
         FirstPractice: {

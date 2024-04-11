@@ -35,5 +35,7 @@ export type GrandPrixDetailsData = {
     name: string
     locality: string
     country: string
+    latitude: string
+    longitude: string
   }
 }
