@@ -1,3 +1,3 @@
-export default function (date: string) {
-  return new Date(date).toLocaleDateString('fr-FR')
+export default function (date: string, options?: object) {
+  return new Date(date).toLocaleDateString('fr-FR', options)
 }
