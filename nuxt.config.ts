@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
-  modules: ['@nuxt/ui', 'nuxt3-leaflet'],
+  modules: ['@nuxt/ui', 'nuxt3-leaflet', '@nuxtjs/device'],
   imports: {
     dirs: ['types'],
   },
@@ -11,4 +11,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   css: ['~/assets/css/main.css'],
+  ui: {
+    icons: ['heroicons', 'flag']
+  },
 })

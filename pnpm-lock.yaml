@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@iconify-json/flag':
+    specifier: ^1.1.50
+    version: 1.1.50
   '@nuxt/ui':
     specifier: ^2.15.1
     version: 2.15.1(nuxt@3.11.2)(vite@5.2.8)(vue@3.4.21)
@@ -25,6 +28,9 @@ devDependencies:
   '@nuxt/eslint-config':
     specifier: ^0.2.0
     version: 0.2.0(eslint@8.57.0)
+  '@nuxtjs/device':
+    specifier: ^3.1.1
+    version: 3.1.1
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -763,6 +769,12 @@ packages:
   /@humanwhocodes/object-schema@2.0.3:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
 
+  /@iconify-json/flag@1.1.50:
+    resolution: {integrity: sha512-tpL5+Rko89AKvBYdjHPu3zrllcQeh4Pqvbq4o7Gv1f+hWTC9eK5PsZYl1wbhGm0LJXq/SW8VvfhO3TofYAnF8Q==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify-json/heroicons@1.1.20:
     resolution: {integrity: sha512-puNt1al/rDw8Rb5x8sfk20UA8AQjMskLMh63nSUBj+8I0lQ7LtX+0Qn8wow2xTXTEsynJ9xXLD8Aat53e0qi8A==}
     dependencies:
@@ -1312,6 +1324,16 @@ packages:
       - rollup
       - supports-color
     dev: false
+
+  /@nuxtjs/device@3.1.1:
+    resolution: {integrity: sha512-wHTziEevt1hdgePQwPhEedWW3COalhP0YGVB+sGLqSrKujX8vdz7lcBFB01KIftpaP8kY5H8pssibNaJbxGcYw==}
+    dependencies:
+      '@nuxt/kit': 3.11.2
+      defu: 6.1.4
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
 
   /@nuxtjs/tailwindcss@6.11.4:
     resolution: {integrity: sha512-09cksgZD4seQj054Z/BeiwFg1bzQTol8KPulLDLGnmMTkEi21vj/z+WlXQRpVbN1GS9+oU9tcSsu2ufXCM3DBg==}
