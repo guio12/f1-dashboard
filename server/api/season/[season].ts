@@ -32,6 +32,7 @@ export default defineEventHandler(async (event) => {
         url: url,
         name: raceName,
         circuitName: Circuit.circuitName,
+        countryName: Circuit.Location.country,
         dateStart: FirstPractice.date,
         dateEnd: date,
         time,

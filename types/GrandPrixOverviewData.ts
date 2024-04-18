@@ -4,6 +4,7 @@ export type GrandPrixOverviewData = {
   url: string
   name: string
   circuitName: string
+  countryName: string
   dateStart: string
   dateEnd: string
   time: string
