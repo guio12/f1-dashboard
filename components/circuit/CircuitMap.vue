@@ -12,7 +12,7 @@ const formatCircuitName = (name: string) => `/img/${slugify(name)}.webp`
       :src="formatCircuitName(circuitName)"
       :alt="circuitName"
       :title="circuitName"
-      class="m-auto p-5"
+      class="m-auto"
     />
     <figcaption class="text-center text-sm italic">© FIA</figcaption>
   </figure>
