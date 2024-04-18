@@ -1,6 +1,6 @@
 import type { APIGrandPrixData } from '~/types/APIGrandPrixData'
 import type { GrandPrixDetailsData } from '~/types/GrandPrixDetailsData'
-import addScheduleEntry from '~/utils/addScheduleEntry'
+import type { GrandPrixFullScheduleData } from '~/types/GrandPrixFullScheduleData'
 
 export default defineEventHandler(async (event) => {
   const { season, round } = event.context.params ?? {}
@@ -25,50 +25,56 @@ export default defineEventHandler(async (event) => {
       ThirdPractice,
       Sprint,
       Qualifying,
-    } = roundInfo || {}
+    } = roundInfo
+
+    const fullSchedule: GrandPrixFullScheduleData = {
+      firstPractice: {
+        date: FirstPractice?.date,
+        time: FirstPractice?.time,
+      },
+      secondPractice: {
+        date: SecondPractice?.date,
+        time: SecondPractice?.time,
+      },
+      thirdPractice: undefined,
+      sprint: undefined,
+      qualifying: {
+        date: Qualifying?.date,
+        time: Qualifying?.time,
+      },
+      race: {
+        date,
+        time,
+      },
+    }
+
+    if (Sprint) {
+      fullSchedule.sprint = {
+        date: Sprint.date,
+        time: Sprint.time,
+      }
+    } else if (ThirdPractice) {
+      fullSchedule.thirdPractice = {
+        date: ThirdPractice.date,
+        time: ThirdPractice.time,
+      }
+    }
 
     const relevantResponse: GrandPrixDetailsData = {
+      season,
+      round,
       url,
       name: raceName,
-      fullSchedule: {
-        firstPractice: {
-          date: FirstPractice.date,
-          time: FirstPractice.time,
-        },
-        secondPractice: {
-          date: SecondPractice.date,
-          time: SecondPractice.time,
-        },
-        qualifying: {
-          date: Qualifying.date,
-          time: Qualifying.time,
-        },
-        race: {
-          date,
-          time,
-        },
-      },
+      isSprintGrandPrix: !!Sprint,
+      fullSchedule,
       circuit: {
-        url: Circuit.url,
-        name: Circuit.circuitName,
-        locality: Circuit.Location.locality,
-        country: Circuit.Location.country,
-        latitude: Circuit.Location.lat,
-        longitude: Circuit.Location.long,
+        url: Circuit?.url,
+        name: Circuit?.circuitName,
+        locality: Circuit?.Location?.locality,
+        country: Circuit?.Location?.country,
+        latitude: Circuit?.Location?.lat,
+        longitude: Circuit?.Location?.long,
       },
-    }
-
-    // on rajoute une session de type Sprint ou ThirdPractice selon les cas
-    if (Sprint) {
-      addScheduleEntry(relevantResponse.fullSchedule, Sprint, 'sprint')
-    }
-
-    if (ThirdPractice) {
-      addScheduleEntry(
-        relevantResponse.fullSchedule,
-        ThirdPractice,
-        'thirdPractice'
-      )
     }
 
     return relevantResponse
