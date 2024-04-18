@@ -1,19 +1,30 @@
 <script setup lang="ts">
+const route = useRoute()
+const currentRoute = ref(route.path)
+
+watch(
+  () => route.path,
+  (newRoute) => {
+    currentRoute.value = newRoute
+  }
+)
+
 const menuItems = [
   {
     label: 'Prochain Grand Prix',
     icon: 'i-heroicons-arrow-right-circle-solid',
     to: '/',
+    get active() {
+      return currentRoute.value === '/'
+    },
   },
   {
-    label: 'Saison 2024',
+    label: 'Saisons',
     icon: 'i-heroicons-calendar-days-solid',
     to: '/season/2024',
-  },
-  {
-    label: 'Saisons précédentes',
-    icon: 'i-heroicons-archive-box-arrow-down-16-solid',
-    to: '/past-seasons/',
+    get active() {
+      return currentRoute.value.includes('/season/')
+    },
   },
 ]
 
