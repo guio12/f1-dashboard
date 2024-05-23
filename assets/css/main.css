@@ -1,8 +1,19 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
-.link {
-  @apply text-green-500 dark:text-green-300 hover:text-green-600 hover:dark:text-green-400 hover:underline underline-offset-4;
+:root {
+  font-family: Poppins;
 }
 
-@tailwind utilities;
+h1 {
+  @apply my-5 text-4xl font-bold;
+}
+
+.link {
+  @apply text-green-500 underline-offset-4 hover:text-green-600 hover:underline dark:text-green-300 hover:dark:text-green-400;
+}
+
+.page-container {
+  @apply container mx-auto px-10 py-7;
+}
