@@ -10,7 +10,7 @@ const splitDate = computed(() => {
 
 <template>
   <div
-    class="group mx-auto mt-1 flex items-center justify-between rounded bg-gray-400 p-4 md:w-3/4"
+    class="group mx-auto mt-1 flex items-center justify-between rounded bg-gray-100 p-4 md:w-3/4 dark:bg-gray-700"
   >
     <div class="text-center text-xl">
       <div class="font-bold">{{ splitDate[0] }}</div>

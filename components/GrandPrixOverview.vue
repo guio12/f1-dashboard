@@ -21,8 +21,11 @@ const formatTime = (date: string, time: string) =>
   <section>
     <ULink :to="`/season/${season}/grand-prix/${round}`">
       <UCard
-        :ui="{ background: 'bg-gray-50 dark:bg-gray-900' }"
-        class="border border-transparent hover:border-green-400"
+        :ui="{
+          background:
+            'border border-transparent bg-gray-50 dark:bg-slate-800 hover:border-green-400',
+          divide: 'divide-y divide-gray-200 dark:divide-gray-700',
+        }"
       >
         <template #header>
           <div>
