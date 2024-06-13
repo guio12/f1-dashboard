@@ -1,52 +1,51 @@
 <script setup lang="ts">
+import { format } from 'date-fns'
+
 const { season } = useRoute().params
 
 useHead({
   title: `Saison ${season}`,
 })
 
-const { data: seasonData } = await useFetch<GrandPrixOverviewData[]>(
-  `/api/season/${season}`
+const key = `/api/season/${season}`
+
+const seasonData = await fetchWithCache<Record<string, GrandPrixOverviewData>>(
+  useNuxtApp(),
+  key
 )
 
-// Date range picker
-import { format } from 'date-fns'
-
-const seasonStartDate = ref()
-const seasonEndDate = ref()
-
-if (seasonData.value) {
-  seasonStartDate.value = new Date(seasonData.value[0].dateStart)
-  seasonEndDate.value = new Date(
-    seasonData.value[seasonData.value.length - 1].dateEnd
+// Récupération des dates de début et de fin (premier et dernier objets)
+const seasonStartDate = ref(new Date(Object.values(seasonData)[0].dateStart))
+const seasonEndDate = ref(
+  new Date(
+    Object.values(seasonData)[Object.values(seasonData).length - 1].dateEnd
   )
-}
+)
 
 const selectedDates = ref({
-  start: seasonStartDate,
-  end: seasonEndDate,
+  start: seasonStartDate.value,
+  end: seasonEndDate.value,
 })
 
 const selectAllSeasonRange = () => {
-  selectedDates.value.start = seasonStartDate
-  selectedDates.value.end = seasonEndDate
+  selectedDates.value.start = seasonStartDate.value
+  selectedDates.value.end = seasonEndDate.value
 }
 
+// Filtre les données de la saison en fonction des dates sélectionnées
 const filteredSeasonData = computed(() => {
-  return seasonData.value?.filter((data) => {
+  return Object.values(seasonData).filter((data) => {
     const selectedDateStart = new Date(selectedDates.value.start)
     const selectedDateEnd = new Date(selectedDates.value.end)
     const gpDateStart = new Date(data.dateStart)
     const gpDateEnd = new Date(data.dateEnd)
 
-    if (selectedDateStart <= gpDateStart && selectedDateEnd >= gpDateEnd) {
-      return data
-    }
+    return selectedDateStart <= gpDateStart && selectedDateEnd >= gpDateEnd
   })
 })
 
 const numberOfGPs = computed(() => {
-  return filteredSeasonData.value ? filteredSeasonData.value.length : 0
+  return filteredSeasonData.value.length
 })
 </script>
 
@@ -89,7 +88,7 @@ const numberOfGPs = computed(() => {
     </section>
 
     <section class="grid grid-cols-1 gap-10 lg:grid-cols-3">
-      <template v-if="filteredSeasonData && filteredSeasonData?.length > 0">
+      <template v-if="filteredSeasonData && filteredSeasonData.length > 0">
         <GrandPrixOverview
           v-for="grandPrix in filteredSeasonData"
           :key="grandPrix.round"

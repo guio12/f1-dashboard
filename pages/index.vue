@@ -3,24 +3,23 @@ useHead({
   title: 'Prochain Grand Prix',
 })
 
-const { data: incomingGrandPrixData } = await useFetch<GrandPrixDetailsData>(
-  '/api/incoming-grand-prix'
+const key = '/api/incoming-grand-prix'
+
+const incomingGrandPrixData = await fetchWithCache<GrandPrixDetailsData>(
+  useNuxtApp(),
+  key
 )
 </script>
 
 <template>
-  <article class="">
-    <h1>
-      <NuxtLink :to="incomingGrandPrixData?.url">{{
-        incomingGrandPrixData?.name
-      }}</NuxtLink>
-    </h1>
-    <h2>
-      Saison {{ incomingGrandPrixData?.season }} | Round
-      {{ incomingGrandPrixData?.round }}
-    </h2>
-
-    <section v-if="incomingGrandPrixData">
+  <article v-if="incomingGrandPrixData" class="page-container">
+    <section class="mx-auto lg:max-w-4xl">
+      <h1>
+        <UIExternalLink
+          :name="incomingGrandPrixData.name"
+          :url="incomingGrandPrixData.url"
+        />
+      </h1>
       <GrandPrixDetails :grand-prix-data="incomingGrandPrixData" />
     </section>
   </article>
