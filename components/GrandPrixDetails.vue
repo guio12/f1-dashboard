@@ -37,16 +37,16 @@ const sessionsItems = Object.entries(fullSchedule).map(([session, data]) => ({
 
 const tabsItems = [
   {
-    slot: 'sessions',
-    label: 'Sessions',
+    slot: 'location',
+    label: 'Localisation du circuit',
   },
   {
     slot: 'map',
     label: 'Carte du circuit',
   },
   {
-    slot: 'location',
-    label: 'Localisation du circuit',
+    slot: 'sessions',
+    label: 'Sessions',
   },
 ]
 
@@ -115,7 +115,6 @@ const setTabsOrientation = computed(() => {
           <UTabs
             :items="tabsItems"
             :orientation="setTabsOrientation"
-            :default-index="2"
             class="w-full"
             :ui="{
               list: {
