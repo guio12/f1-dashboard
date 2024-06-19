@@ -10,6 +10,10 @@ defineProps<{
     <ULink :to="url" target="_blank" class="link">
       {{ name }}
     </ULink>
-    <UIcon name="i-heroicons-arrow-top-right-on-square-16-solid" class="ms-1" />
+    <UIcon
+      name="i-heroicons-arrow-top-right-on-square-16-solid"
+      class="ms-1"
+      aria-label="Icône de lien externe"
+    />
   </div>
 </template>
