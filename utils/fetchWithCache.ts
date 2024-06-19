@@ -44,7 +44,11 @@ export async function fetchWithCache<T>(
   })
 
   if (error.value) {
-    throw new Error(error.value as unknown as string)
+    throw createError({
+      statusCode: error.value as unknown as number,
+      message: `Erreur lors de la récupération des données de ${url}`,
+      fatal: true,
+    })
   }
 
   return data.value as T
