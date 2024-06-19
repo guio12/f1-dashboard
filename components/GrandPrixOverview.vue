@@ -29,30 +29,47 @@ const formatTime = (date: string, time: string) =>
       >
         <template #header>
           <div>
-            <div class="flex items-start justify-between">
-              <div>
+            <div class="mb-2 flex h-12 items-start justify-between xl:h-auto">
+              <div class="flex items-center">
                 <UIcon
                   :name="matchCountryFlag(countryName)"
                   class="me-2 align-text-bottom text-2xl"
+                  alt="Drapeau du pays du Grand Prix"
                 />
-                <span class="text-xl">{{ name }}</span>
+                <h2 class="text-xl">{{ name }}</h2>
               </div>
-              <UBadge v-if="isSprintGrandPrix" label="Sprint" />
-            </div>
-            <div class="flex h-8 items-center justify-between">
-              <span>Round {{ round }}</span>
-              <UDivider
-                orientation="vertical"
-                size="lg"
-                class="mx-5 text-red-600"
+              <UBadge
+                v-if="isSprintGrandPrix"
+                class="hidden xl:inline-block"
+                label="Sprint"
               />
-              <span class="font-bold">
+            </div>
+            <div class="xl:flex">
+              <div class="mb-2 flex justify-between">
+                <span>Round {{ round }}</span>
+                <UDivider
+                  orientation="vertical"
+                  size="md"
+                  class="mx-5 hidden xl:inline-block"
+                  :ui="{
+                    border: {
+                      base: 'flex border-gray-200 dark:border-gray-600',
+                    },
+                  }"
+                />
+                <UBadge
+                  v-if="isSprintGrandPrix"
+                  class="xl:hidden"
+                  label="Sprint"
+                />
+              </div>
+              <div class="font-bold">
                 {{ formatDate(dateStart) }} -
                 {{ formatDate(dateEnd) }}
-              </span>
+              </div>
             </div>
           </div>
-          <div class="h-6">
+          <div class="hidden xl:inline-block">
             <span>Départ de la course à </span>
             <span class="font-bold">{{ formatTime(dateEnd, time) }}</span>
           </div>
