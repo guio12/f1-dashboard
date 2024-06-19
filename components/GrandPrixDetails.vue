@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { isDesktop } = useDevice()
+const { isDesktop } = useWindowResize()
 
 const props = defineProps<{
   grandPrixData: GrandPrixDetailsData
@@ -50,9 +50,9 @@ const tabsItems = [
   },
 ]
 
-const setTabsOrientation = computed(() => {
-  return isDesktop ? 'horizontal' : 'vertical'
-})
+const setTabsOrientation = computed(() =>
+  isDesktop.value ? 'horizontal' : 'vertical'
+)
 </script>
 
 <template>
@@ -116,6 +116,7 @@ const setTabsOrientation = computed(() => {
             :items="tabsItems"
             :orientation="setTabsOrientation"
             class="w-full"
+            aria-label="Navigation des onglets"
             :ui="{
               list: {
                 background: 'dark:bg-gray-700',
@@ -125,8 +126,8 @@ const setTabsOrientation = computed(() => {
             <template #sessions>
               <div class="pt-5 lg:p-7">
                 <TimetableItem
-                  v-for="(session, index) in sessionsItems"
-                  :key="index"
+                  v-for="session in sessionsItems"
+                  :key="session.sessionName"
                   :session="session"
                 />
               </div>
