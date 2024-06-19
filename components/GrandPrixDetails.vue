@@ -32,7 +32,7 @@ const formatTime = (date: string, time: string) =>
 const sessionsItems = Object.entries(fullSchedule).map(([session, data]) => ({
   sessionName: formatName(session),
   date: formatToShortDate(data?.date),
-  heure: formatTime(data?.date, data?.time),
+  time: formatTime(data?.date, data?.time),
 }))
 
 const tabsItems = [
@@ -91,15 +91,21 @@ const setTabsOrientation = computed(() => {
                 border: { base: 'flex border-gray-200 dark:border-gray-600' },
               }"
             />
-            <div>{{ circuit.locality }} - {{ circuit.country }}</div>
+            <address>{{ circuit.locality }} - {{ circuit.country }}</address>
           </div>
           <div class="mt-5 flex justify-between">
             <p class="text-2xl font-bold">
-              {{
-                formatToLongDate(grandPrixData.fullSchedule.firstPractice.date)
-              }}
+              <time :datetime="grandPrixData.fullSchedule.firstPractice.date">
+                {{
+                  formatToLongDate(
+                    grandPrixData.fullSchedule.firstPractice.date
+                  )
+                }}
+              </time>
               -
-              {{ formatToLongDate(grandPrixData.fullSchedule.race.date) }}
+              <time :datetime="grandPrixData.fullSchedule.race.date">
+                {{ formatToLongDate(grandPrixData.fullSchedule.race.date) }}
+              </time>
             </p>
           </div>
         </section>

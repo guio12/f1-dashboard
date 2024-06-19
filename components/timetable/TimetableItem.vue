@@ -4,19 +4,27 @@ const props = defineProps<{
 }>()
 
 const splitDate = computed(() => {
-  return props.session.date.split(' ')
+  if (typeof props.session.date === 'string') {
+    return props.session.date.split(' ')
+  } else {
+    return ['', '']
+  }
 })
 </script>
 
 <template>
-  <div
-    class="group mx-auto mt-1 flex items-center justify-between rounded bg-gray-100 p-4 md:w-3/4 dark:bg-gray-700"
+  <section
+    class="group mx-auto mt-1 flex items-center justify-between gap-4 rounded bg-gray-100 p-4 text-center md:w-3/4 dark:bg-gray-700"
   >
-    <div class="text-center text-xl">
-      <div class="font-bold">{{ splitDate[0] }}</div>
-      <div>{{ splitDate[1] }}</div>
-    </div>
-    <div class="text-xl">{{ session.sessionName }}</div>
-    <div class="text-xl font-bold">{{ session.heure }}</div>
-  </div>
+    <article class="text-center text-xl">
+      <time :datetime="`${splitDate[0]} ${splitDate[1]}`">
+        <strong>{{ splitDate[0] }}</strong>
+        <p>{{ splitDate[1] }}</p>
+      </time>
+    </article>
+    <h2 class="text-wrap text-xl">{{ session.sessionName }}</h2>
+    <time class="text-xl font-bold" :datetime="session.time">{{
+      session.time
+    }}</time>
+  </section>
 </template>
