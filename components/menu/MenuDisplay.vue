@@ -1,13 +1,5 @@
 <script setup lang="ts">
 const route = useRoute()
-const currentRoute = ref(route.path)
-
-watch(
-  () => route.path,
-  (newRoute) => {
-    currentRoute.value = newRoute
-  }
-)
 
 const menuItems = [
   {
@@ -15,7 +7,7 @@ const menuItems = [
     icon: 'i-heroicons-arrow-right-circle-solid',
     to: '/',
     get active() {
-      return currentRoute.value === '/'
+      return route.matched.some(record => record.path === '/')
     },
   },
   {
@@ -23,7 +15,7 @@ const menuItems = [
     icon: 'i-heroicons-calendar-days-solid',
     to: '/season/2024',
     get active() {
-      return currentRoute.value.includes('/season/')
+      return route.matched.some(record => record.path.startsWith('/season/'))
     },
   },
 ]
@@ -31,14 +23,10 @@ const menuItems = [
 const isMobileMenuOpen = ref(false)
 
 const colorMode = useColorMode()
-const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set() {
-    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-  },
-})
+const isDark = computed(() => colorMode.value === 'dark')
+const toggleColorMode = () => {
+  colorMode.preference = isDark.value ? 'light' : 'dark'
+}
 </script>
 
 <template>
@@ -57,6 +45,7 @@ const isDark = computed({
     <UButton
       icon="i-heroicons-bars-3-16-solid"
       class="my-5 me-10 lg:my-0 lg:hidden"
+      aria-label="Menu mobile"
       @click="isMobileMenuOpen = true"
     />
     <ClientOnly>
@@ -66,9 +55,9 @@ const isDark = computed({
         "
         color="gray"
         variant="ghost"
-        aria-label="Theme"
+        aria-label="Changer le thème"
         class="h-10 self-center lg:me-10 dark:border-gray-800"
-        @click="isDark = !isDark"
+        @click="toggleColorMode"
       />
       <template #fallback>
         <div class="h-8 w-8" />
