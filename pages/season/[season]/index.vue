@@ -14,33 +14,52 @@ const seasonData = await fetchWithCache<Record<string, GrandPrixOverviewData>>(
   key
 )
 
-// Récupération des dates de début et de fin (premier et dernier objets)
-const seasonStartDate = ref(new Date(Object.values(seasonData)[0].dateStart))
-const seasonEndDate = ref(
-  new Date(
-    Object.values(seasonData)[Object.values(seasonData).length - 1].dateEnd
-  )
+// Fonction générique pour créer une date à partir d'une string
+const createDate = (dateString: string) => new Date(dateString)
+
+// On vérifie si une date est dans une période donnée
+const isDateInRange = (date: Date, startDate: Date, endDate: Date): boolean =>
+  startDate <= date && endDate >= date
+
+const seasonDataValues: GrandPrixOverviewData[] = Object.values(seasonData)
+
+// On récupère les premières et dernières dates de la saison
+const seasonStartDate: Ref<Date> = ref(
+  createDate(seasonDataValues[0].dateStart)
+)
+const seasonEndDate: Ref<Date> = ref(
+  createDate(seasonDataValues[seasonDataValues.length - 1].dateEnd)
 )
 
-const selectedDates = ref({
+interface SelectedDates {
+  start: Date
+  end: Date
+}
+
+const selectedDates: Ref<SelectedDates> = ref({
   start: seasonStartDate.value,
   end: seasonEndDate.value,
 })
 
 const selectAllSeasonRange = () => {
-  selectedDates.value.start = seasonStartDate.value
-  selectedDates.value.end = seasonEndDate.value
+  selectedDates.value = {
+    start: seasonStartDate.value,
+    end: seasonEndDate.value,
+  }
 }
 
-// Filtre les données de la saison en fonction des dates sélectionnées
 const filteredSeasonData = computed(() => {
-  return Object.values(seasonData).filter((data) => {
-    const selectedDateStart = new Date(selectedDates.value.start)
-    const selectedDateEnd = new Date(selectedDates.value.end)
-    const gpDateStart = new Date(data.dateStart)
-    const gpDateEnd = new Date(data.dateEnd)
+  const selectedDateStart = selectedDates.value.start
+  const selectedDateEnd = selectedDates.value.end
 
-    return selectedDateStart <= gpDateStart && selectedDateEnd >= gpDateEnd
+  return seasonDataValues.filter((data: GrandPrixOverviewData) => {
+    const gpDateStart: Date = createDate(data.dateStart)
+    const gpDateEnd: Date = createDate(data.dateEnd)
+
+    return (
+      isDateInRange(gpDateStart, selectedDateStart, selectedDateEnd) &&
+      isDateInRange(gpDateEnd, selectedDateStart, selectedDateEnd)
+    )
   })
 })
 
@@ -81,14 +100,14 @@ const numberOfGPs = computed(() => {
         </template>
       </UPopover>
 
-      <div class="mt-3 lg:mt-0">
-        <span class="text-primary me-1 font-bold">{{ numberOfGPs }}</span>
+      <p class="mt-3 lg:mt-0">
+        <span class="text-primary me-2 font-bold">{{ numberOfGPs }}</span>
         <span>Grand Prix durant cette période</span>
-      </div>
+      </p>
     </section>
 
-    <section class="grid grid-cols-1 gap-10 lg:grid-cols-3">
-      <template v-if="filteredSeasonData && filteredSeasonData.length > 0">
+    <template v-if="filteredSeasonData && filteredSeasonData.length > 0">
+      <section class="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <GrandPrixOverview
           v-for="grandPrix in filteredSeasonData"
           :key="grandPrix.round"
@@ -103,11 +122,13 @@ const numberOfGPs = computed(() => {
           :is-sprint-grand-prix="grandPrix.isSprintGrandPrix"
           :url="grandPrix.url"
         />
-      </template>
+      </section>
+    </template>
 
-      <template v-else>
-        <p>Aucun Grand Prix ne correspond aux critères sélectionnés</p>
-      </template>
-    </section>
+    <template v-else>
+      <p class="text-center">
+        Aucun Grand Prix ne correspond aux critères sélectionnés
+      </p>
+    </template>
   </article>
 </template>

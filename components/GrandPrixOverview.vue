@@ -28,51 +28,49 @@ const formatTime = (date: string, time: string) =>
         }"
       >
         <template #header>
-          <div>
-            <div class="mb-2 flex h-12 items-start justify-between xl:h-auto">
-              <div class="flex items-center">
-                <UIcon
-                  :name="matchCountryFlag(countryName)"
-                  class="me-2 align-text-bottom text-2xl"
-                  alt="Drapeau du pays du Grand Prix"
-                />
-                <h2 class="text-xl">{{ name }}</h2>
-              </div>
+          <h2 class="mb-2 flex h-12 items-start justify-between xl:h-auto">
+            <div class="flex items-center">
+              <UIcon
+                :name="matchCountryFlag(countryName)"
+                class="me-2 align-text-bottom text-2xl"
+                aria-label="Drapeau du pays du Grand Prix"
+              />
+              <span class="text-xl">{{ name }}</span>
+            </div>
+            <UBadge
+              v-if="isSprintGrandPrix"
+              class="hidden xl:inline-block"
+              label="Sprint"
+            />
+          </h2>
+          <div class="xl:flex">
+            <p class="mb-2 flex justify-between">
+              <span>Round {{ round }}</span>
+              <UDivider
+                orientation="vertical"
+                size="md"
+                class="mx-5 hidden xl:inline-block"
+                :ui="{
+                  border: {
+                    base: 'flex border-gray-200 dark:border-gray-600',
+                  },
+                }"
+              />
               <UBadge
                 v-if="isSprintGrandPrix"
-                class="hidden xl:inline-block"
+                class="xl:hidden"
                 label="Sprint"
               />
-            </div>
-            <div class="xl:flex">
-              <div class="mb-2 flex justify-between">
-                <span>Round {{ round }}</span>
-                <UDivider
-                  orientation="vertical"
-                  size="md"
-                  class="mx-5 hidden xl:inline-block"
-                  :ui="{
-                    border: {
-                      base: 'flex border-gray-200 dark:border-gray-600',
-                    },
-                  }"
-                />
-                <UBadge
-                  v-if="isSprintGrandPrix"
-                  class="xl:hidden"
-                  label="Sprint"
-                />
-              </div>
-              <div class="font-bold">
-                {{ formatDate(dateStart) }} -
-                {{ formatDate(dateEnd) }}
-              </div>
-            </div>
+            </p>
+            <p class="font-bold">
+              {{ formatDate(dateStart) }} -
+              {{ formatDate(dateEnd) }}
+            </p>
           </div>
-          <div class="hidden xl:inline-block">
+          <p class="hidden xl:inline-block">
             <span>Départ de la course à </span>
             <span class="font-bold">{{ formatTime(dateEnd, time) }}</span>
-          </div>
+          </p>
         </template>
         <CircuitMap :circuit-name="circuitName" />
       </UCard>
