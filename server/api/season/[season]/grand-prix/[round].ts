@@ -56,8 +56,8 @@ function transformData(
   }
 
   /* On ajoute les sessions facultatives si elles existent
-  * Il ne peut pas y avoir à la fois une session Sprint et une session ThirdPractice
-  */
+   * Il ne peut pas y avoir à la fois une session Sprint et une session ThirdPractice
+   */
   if (Sprint) {
     fullSchedule.sprint = {
       date: Sprint.date,
