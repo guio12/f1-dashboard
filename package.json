@@ -17,25 +17,25 @@
   },
   "dependencies": {
     "@iconify-json/flag": "^1.1.52",
-    "@nuxt/ui": "^2.16.0",
+    "@nuxt/ui": "^2.17.0",
     "date-fns": "^3.6.0",
     "v-calendar": "^3.1.2",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue": "^3.4.31",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/fonts": "^0.7.0",
+    "@nuxt/fonts": "^0.7.1",
     "@nuxt/test-utils": "^3.13.1",
     "@playwright/test": "^1.45.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "happy-dom": "^14.12.3",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.12.2",
     "nuxt3-leaflet": "^1.0.12",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "stylelint": "^16.5.0",
+    "stylelint": "^16.6.1",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-recommended-vue": "^1.5.0",
     "vitest": "^1.6.0"
