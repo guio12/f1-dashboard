@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: true,
-  modules: ['@nuxt/ui', 'nuxt3-leaflet', '@nuxtjs/device', '@nuxt/fonts'],
+  ssr: false,
+  modules: ['@nuxt/ui', 'nuxt3-leaflet', '@nuxt/fonts'],
   imports: {
     dirs: ['types'],
   },
