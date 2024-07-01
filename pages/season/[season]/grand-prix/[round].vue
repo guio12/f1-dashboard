@@ -16,7 +16,7 @@ useHead({
 <template>
   <article v-if="grandPrixData" class="page-container">
     <section class="mx-auto lg:max-w-4xl">
-      <h1 class="self-center flex items-center">
+      <h1 class="flex items-center self-center">
         <UIcon
           :name="matchCountryFlag(grandPrixData.circuit.country)"
           aria-label="Drapeau du pays du Grand Prix"

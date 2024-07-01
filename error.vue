@@ -10,14 +10,14 @@ useHead({
 defineProps({
   error: {
     type: Object as () => NuxtError,
-    default: null
-  }
+    default: null,
+  },
 })
 </script>
 
 <template>
   <NuxtLayout>
-    <div class="text-center mt-36">
+    <div class="mt-36 text-center">
       <h1>{{ error.statusCode }}</h1>
 
       <pre>{{ error }}</pre>

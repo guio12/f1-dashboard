@@ -7,7 +7,7 @@ const menuItems = [
     icon: 'i-heroicons-arrow-right-circle-solid',
     to: '/',
     get active() {
-      return route.matched.some(record => record.path === '/')
+      return route.matched.some((record) => record.path === '/')
     },
   },
   {
@@ -15,7 +15,7 @@ const menuItems = [
     icon: 'i-heroicons-calendar-days-solid',
     to: '/season/2024',
     get active() {
-      return route.matched.some(record => record.path.startsWith('/season/'))
+      return route.matched.some((record) => record.path.startsWith('/season/'))
     },
   },
 ]

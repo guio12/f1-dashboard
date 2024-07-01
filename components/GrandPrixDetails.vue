@@ -110,40 +110,38 @@ const setTabsOrientation = computed(() =>
           </div>
         </section>
       </template>
-      <section>
-        <UContainer>
-          <UTabs
-            :items="tabsItems"
-            :orientation="setTabsOrientation"
-            class="w-full"
-            aria-label="Navigation des onglets"
-            :ui="{
-              list: {
-                background: 'dark:bg-gray-700',
-              },
-            }"
-          >
-            <template #sessions>
-              <div class="pt-5 lg:p-7">
-                <TimetableItem
-                  v-for="session in sessionsItems"
-                  :key="session.sessionName"
-                  :session="session"
-                />
-              </div>
-            </template>
-            <template #map>
-              <CircuitMap :circuit-name="circuit.name" class="pt-5 lg:p-7" />
-            </template>
-            <template #location>
-              <CircuitCityLocation
-                :latitude="circuit.latitude"
-                :longitude="circuit.longitude"
-                class="pt-5 lg:p-7"
+      <section class="px-7 pt-4">
+        <UTabs
+          :items="tabsItems"
+          :orientation="setTabsOrientation"
+          class="w-full"
+          aria-label="Navigation des onglets"
+          :ui="{
+            list: {
+              background: 'dark:bg-gray-700',
+            },
+          }"
+        >
+          <template #sessions>
+            <div class="pt-5 lg:p-7">
+              <TimetableItem
+                v-for="session in sessionsItems"
+                :key="session.sessionName"
+                :session="session"
               />
-            </template>
-          </UTabs>
-        </UContainer>
+            </div>
+          </template>
+          <template #map>
+            <CircuitMap :circuit-name="circuit.name" class="pt-5 lg:p-7" />
+          </template>
+          <template #location>
+            <CircuitCityLocation
+              :latitude="circuit.latitude"
+              :longitude="circuit.longitude"
+              class="pt-5 lg:p-7"
+            />
+          </template>
+        </UTabs>
       </section>
     </UCard>
   </section>

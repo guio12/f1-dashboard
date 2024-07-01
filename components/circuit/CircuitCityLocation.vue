@@ -13,7 +13,7 @@ const numericLongitude = computed(() => parseFloat(props.longitude))
 </script>
 
 <template>
-  <div class="mx-auto h-96">
+  <div class="mx-auto mt-3 h-96 md:w-3/4">
     <LMap
       ref="map"
       :zoom="zoom"

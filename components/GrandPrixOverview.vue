@@ -19,7 +19,10 @@ const formatTime = (date: string, time: string) =>
 
 <template>
   <section>
-    <ULink :to="`/season/${season}/grand-prix/${round}`">
+    <ULink
+      :to="`/season/${season}/grand-prix/${round}`"
+      :aria-label="`Details for ${name}, Season ${season}, Round ${round}`"
+    >
       <UCard
         :ui="{
           background:
@@ -44,7 +47,7 @@ const formatTime = (date: string, time: string) =>
             />
           </h2>
           <div class="xl:flex">
-            <p class="mb-2 flex justify-between">
+            <div class="mb-2 flex justify-between">
               <span>Round {{ round }}</span>
               <UDivider
                 orientation="vertical"
@@ -61,7 +64,7 @@ const formatTime = (date: string, time: string) =>
                 class="xl:hidden"
                 label="Sprint"
               />
-            </p>
+            </div>
             <p class="font-bold">
               {{ formatDate(dateStart) }} -
               {{ formatDate(dateEnd) }}

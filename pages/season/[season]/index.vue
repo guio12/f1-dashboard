@@ -76,7 +76,10 @@ const numberOfGPs = computed(() => {
 
     <section class="my-10 justify-between lg:flex">
       <UPopover :popper="{ placement: 'bottom-start' }">
-        <UButton icon="i-heroicons-calendar-days-20-solid">
+        <UButton
+          icon="i-heroicons-calendar-days-20-solid"
+          data-testid="datepicker"
+        >
           {{ format(selectedDates.start, 'd MMM, yyy') }} -
           {{ format(selectedDates.end, 'd MMM, yyy') }}
         </UButton>
@@ -101,8 +104,8 @@ const numberOfGPs = computed(() => {
       </UPopover>
 
       <p class="mt-3 lg:mt-0">
-        <span class="text-primary me-2 font-bold">{{ numberOfGPs }}</span>
-        <span>Grand Prix durant cette période</span>
+        <span class="text-primary font-bold">{{ numberOfGPs }}</span>
+        <span> Grand Prix durant cette période</span>
       </p>
     </section>
 
