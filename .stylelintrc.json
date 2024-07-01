@@ -3,5 +3,6 @@
     "stylelint-config-idiomatic-order",
     "stylelint-config-recommended-vue"
   ],
+  "ignoreFiles": ["dist/**"],
   "rules": {}
 }
